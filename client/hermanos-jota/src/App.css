@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  text-decoration: none;
+}
+
+:root {
+  --color-siena-tostado: #a0522d;
+  --color-verde-salvia: #87a96b;
+  --color-alabastro-calido: #f5e6d3;
+  --color-vara-de-oro: #d4a437;
+  --color-rosa-polvoriento: #c47a6d;
+  --fuente-playfair: "Playfair Display", serif;
+  --fuente-inter: "Inter", sans-serif;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+button {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* ESTILOS DE LA NOTIDICAION */
+
+/* Cambia el color del fondo del toast*/
+.Toastify__toast {
+  background-color: var(--color-siena-tostado) !important;
+  color: white !important;
+}
+
+/* Cambia el color de la barrita del toast*/
+.Toastify__toast .Toastify__progress-bar {
+  background: var(--color-vara-de-oro) !important;
+}

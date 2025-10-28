@@ -1,3 +1,5 @@
+import { Trash } from "lucide-react";
+import "./EliminarProductoButton.css"
 const EliminarProductoButton = ({ id }) => {
   const eliminarProducto = async () => {
     try {
@@ -17,8 +19,8 @@ const EliminarProductoButton = ({ id }) => {
     }
   };
   return (
-    <div>
-      <button onClick={eliminarProducto}>
+    <div className="container-button">
+      <button className="delete-button" onClick={eliminarProducto}>
         <Trash />
       </button>
     </div>

@@ -1,0 +1,106 @@
+.detalle-producto {
+  max-width: 80vw;
+  margin: 1rem auto;
+}
+
+.producto-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 80vw;
+}
+
+.producto-img {
+  box-shadow: 2px 5px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  width: 80vw;
+}
+
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  border: 1px solid #d9d9d910;
+  box-shadow: 2px 5px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 10px;
+}
+
+.producto-nombre {
+  margin-bottom: 1rem;
+}
+
+.cantidad {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-compra {
+  all: unset;
+  width: 200px;
+  text-align: center;
+  background-color: var(--color-siena-tostado);
+  cursor: pointer;
+  color: var(--color-alabastro-calido);
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+}
+
+.producto-caracteristicas {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 2px 5px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  padding: 5px;
+  max-width: 80vw;
+}
+.producto-caracteristicas ul {
+  padding-left: 1.2em;
+  margin: 0;
+  width: 100%;
+}
+
+.caracteristicas-title {
+  color: var(--color-siena-tostado);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.producto-caracteristicas ul li {
+  list-style-type: disc;
+}
+
+.producto-caracteristicas ul li::marker {
+  color: var(--color-siena-tostado);
+}
+
+@media (min-width: 658px) {
+  .producto-img {
+    height: 60vh;
+  }
+  .producto-info-container {
+    height: 60vh;
+    flex-direction: row;
+  }
+  .producto-caracteristicas ul {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 0.8em; /* Espacio entre ítems */
+    padding-left: 1.2em;
+    margin: 0;
+    width: 100%;
+  }
+  .producto-caracteristicas ul li {
+    max-width: 20vw;
+  }
+}

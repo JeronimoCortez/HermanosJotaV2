@@ -2,20 +2,41 @@ import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 
 const ContactForm = () => {
-    const [nombreCompleto, setNombreCompleto] = useState('');
-    const [email, setEmail] = useState('');
-    const [mensaje, setMensaje] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const [formData, setFormData] = useState({
+        nombreCompleto: "",
+        email: "",
+        mensaje: ""
+    })
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = { nombreCompleto, email, mensaje }
-        console.log("Datos del formulario: ", formData);
-        toast("Mensaje enviado con éxito")
-
-        setNombreCompleto('');
-        setEmail('');
-        setMensaje('');
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }))
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+
+        try {
+            console.log("Datos del formulario: ", formData);
+            toast.success("Mensaje enviado con éxito");
+
+            setFormData({
+                nombreCompleto: "",
+                email: "",
+                mensaje: ""
+            });
+        } catch (err) {
+            setError(err);
+            toast.error("Error al enviar el mensaje");
+        } finally {
+            setLoading(false);
+        }
+    };
+
 
     return (
         <article className='contacto-form contacto-card'>
@@ -34,8 +55,8 @@ const ContactForm = () => {
                         <input
                             type="text"
                             name="nombreCompleto"
-                            value={nombreCompleto}
-                            onChange={(e) => setNombreCompleto(e.target.value)}
+                            value={formData.nombreCompleto}
+                            onChange={handleChange}
                             id="nombreCompleto"
                             placeholder="Nombre Completo"
                             required
@@ -46,8 +67,8 @@ const ContactForm = () => {
                         <input
                             type="email"
                             name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={handleChange}
                             id="email"
                             placeholder="correo@correo.com"
                             required
@@ -60,14 +81,22 @@ const ContactForm = () => {
                     <textarea
                         placeholder="Escribe un mensaje"
                         name="mensaje"
-                        value={mensaje}
-                        onChange={(e) => setMensaje(e.target.value)}
+                        value={formData.mensaje}
+                        onChange={handleChange}
                         id="mensaje"
                         required
                     ></textarea>
                 </div>
 
-                <button type="submit">Enviar mensaje</button>
+                {error && (
+                    <p className="contacto-form-error">
+                        Ocurrió un error al enviar el mensaje: {error.message || error.toString()}
+                    </p>
+                )}
+
+                <button type="submit" disabled={loading}>
+                    {loading ? "Enviando Mensaje..." : "Enviar Mensaje"}
+                </button>
             </form>
             <ToastContainer position="bottom-left" theme="colored" pauseOnFocusLoss pauseOnHover={false} />
         </article>

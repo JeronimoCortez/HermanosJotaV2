@@ -1,0 +1,16 @@
+.hero {
+    height: auto;
+    min-height: 45vh;
+    background-color: var(--color-alabastro-calido);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-title,
+.hero-subtitle {
+    text-align: center;
+    color: var(--color-siena-tostado);
+    margin: 5px 0;
+}

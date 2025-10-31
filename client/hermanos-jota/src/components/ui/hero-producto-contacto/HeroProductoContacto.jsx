@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import './heroProductoContacto.css'
+=======
+import './HeroProductoContacto.css'
+>>>>>>> origin/faustoleal
 
 const HeroProductoContacto = ({ title, subtitle }) => {
     return (

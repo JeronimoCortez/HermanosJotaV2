@@ -1,12 +1,19 @@
-const express = require('express');
+import "dotenv/config"
+import connectDB from "./persistence/dbConfig";
+import express from "express"
+import productRoutes from './routes/productRoutes'
+
+
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
+connectDB()
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Biencenido al servidor de Muebleria Jota');
+    res.send('Bienvenido al servidor de Muebleria Jota');
 })
 
 app.use((req, res, next) => {
@@ -22,6 +29,8 @@ app.use((err, req, res, next)=>{
         message:err.message
     })
 })
+
+app.use('/api/productos', productRoutes)
 
 app.listen(PORT, ()=>{
     console.log(`Servidor corriendo en http://localhost:${PORT}`);    

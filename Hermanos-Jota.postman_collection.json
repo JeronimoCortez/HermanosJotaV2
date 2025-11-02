@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "2b8b2ac2-d778-4353-bd0b-89f937e12de7",
+		"name": "Hermanos-Jota",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34903075"
+	},
+	"item": [
+		{
+			"name": "CrearProducto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Aparador Uspallata\",\r\n  \"descripcion\": \"Aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón. Su silueta minimalista realza el veteado natural de la madera, creando una pieza que combina funcionalidad y elegancia atemporal para espacios contemporáneos.\",\r\n  \"precio\": 1200,\r\n  \"imageUrl\": \"https://i.postimg.cc/pXWMvF92/aparador-Uspallata.png\",\r\n  \"categoria\": \"sala\",\r\n  \"stock\": 10,\r\n  \"caracteristicas\": [\r\n    \"Construido en nogal macizo certificado FSC®\",\r\n    \"Tiradores metálicos en acabado latón\",\r\n    \"Acabado con aceite natural ecológico\",\r\n    \"6 compartimientos interiores para organización\",\r\n    \"Fácil mantenimiento: limpiar con paño seco o ligeramente humedecido\",\r\n    \"Diseño minimalista que realza el veteado natural\"\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProductos",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarProducto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Aparador Uspallata\",\r\n  \"descripcion\": \"Aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón. Su silueta minimalista realza el veteado natural de la madera, creando una pieza que combina funcionalidad y elegancia atemporal para espacios contemporáneos.\",\r\n  \"precio\": 1200,\r\n  \"imageUrl\": \"https://i.postimg.cc/pXWMvF92/aparador-Uspallata.png\",\r\n  \"categoria\": \"sala\",\r\n  \"stock\": 10,\r\n  \"caracteristicas\": [\r\n    \"Construido en nogal macizo certificado FSC\",\r\n    \"Tiradores metálicos en acabado latón\",\r\n    \"Acabado con aceite natural ecológico\",\r\n    \"6 compartimientos interiores para organización\",\r\n    \"Fácil mantenimiento: limpiar con paño seco o ligeramente humedecido\",\r\n    \"Diseño minimalista que realza el veteado natural\"\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/productos/6907809cbaae0a607803e107",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"productos",
+						"6907809cbaae0a607803e107"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/productos/6907809cbaae0a607803e107",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"productos",
+						"6907809cbaae0a607803e107"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarProducto",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/productos/6907809cbaae0a607803e107",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"productos",
+						"6907809cbaae0a607803e107"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

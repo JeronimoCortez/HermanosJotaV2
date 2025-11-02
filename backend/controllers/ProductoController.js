@@ -42,7 +42,7 @@ export const crearProducto = async (req, res) => {
       nombre: nombre,
       descripcion: descripcion || "",
       precio: precio,
-      imagenUrl: imageUrl || "",
+      imageUrl: imageUrl || "",
       categoria: categoria || "",
       stock: stock || "",
       caracteristicas: caracteristicas || ""
@@ -51,7 +51,7 @@ export const crearProducto = async (req, res) => {
     const data = await nuevoProducto.save();
     return res.status(204).json(data);
   } catch (error) {
-    return res.status(500).json(`ERROR: `, error);
+    return res.status(500).json(`ERROR: ${error}`);
   }
 };
 
@@ -60,7 +60,7 @@ export const actualizarProducto = async (req, res) => {
     const { id } = req.params;
     const datosActualizados = req.body;
 
-    const producto = await producto.findByIdAndUpdate(id, datosActualizados, {
+    const producto = await Producto.findByIdAndUpdate(id, datosActualizados, {
       new: true,
       runvalidators: true,
     });
@@ -74,8 +74,8 @@ export const actualizarProducto = async (req, res) => {
 export const eliminarProducto = async (req, res) => {
   try {
     const { id } = req.params;
-    await producto.findByIdAndDelete(id);
-    return res.status.json({ message: "Proyecto eliminado con exito" });
+    await Producto.findByIdAndDelete(id);
+    return res.status(200).json({ message: "Proyecto eliminado con exito" });
   } catch (error) {
     return res.status(500).json({ message: `ERROR: ${error}` });
   }

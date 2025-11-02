@@ -1,4 +1,4 @@
-import './heroProductoContacto.css'
+import './HeroProductoContacto.css'
 
 const HeroProductoContacto = ({ title, subtitle }) => {
     return (

@@ -1,18 +1,16 @@
-import { Router } from "express";
+import express from "express";
 
-import { listarProductos, listarProductoPorId, crearProducto, actualizarProducto, eliminarProducto } from "../controllers/ProductoController";
+import { listarProductos, listarProductoPorId, crearProducto, actualizarProducto, eliminarProducto } from "../controllers/ProductoController.js";
 
-const router = Router
+export const productRoutes = express.Router();
 
-router.get('/', listarProductos);
+productRoutes.get('/', listarProductos);
 
-router.get('/:id', listarProductoPorId)
+productRoutes.get('/:id', listarProductoPorId)
 
-router.post('/', crearProducto)
+productRoutes.post('/', crearProducto)
 
-router.put('/:id', actualizarProducto)
+productRoutes.put('/:id', actualizarProducto)
 
-router.delete('/:id', eliminarProducto)
+productRoutes.delete('/:id', eliminarProducto)
 
-
-module.exports = router;

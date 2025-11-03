@@ -2,6 +2,7 @@ import { useState } from "react";
 import MobileMenu from "./MobileMenu";
 import "./navbar.css";
 import NavLinks from "./NavLinks";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ setOpenCarrito, total }) => {
   const [visible, setVisible] = useState(false);
@@ -13,13 +14,13 @@ const Navbar = ({ setOpenCarrito, total }) => {
   return (
     <header>
       <div className="logo">
-        <a href="index.html">
+        <Link to="/">
           <img
-            src="./assets/logo.svg"
+            src="./public/assets/logo.svg"
             alt="Logo Mueblería Hermanos Jota"
             width="40"
           />
-        </a>
+        </Link>
       </div>
 
       <nav className="elementos-nav">

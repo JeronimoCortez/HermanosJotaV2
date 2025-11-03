@@ -3,18 +3,19 @@ import { FaMapMarkerAlt, FaInstagram } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import NavLinks from "../navbar/NavLinks";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer>
       <section className="footer-info">
-        <a href="/">
+        <Link to="/">
           <img
-            src="./assets/logo-blanco.svg"
+            src="./public/assets/logo-blanco.svg"
             alt="Logo Mueblería Hermanos Jota"
             width="100"
           />
-        </a>
+        </Link>
         <address>
           <p>
             <FaMapMarkerAlt />

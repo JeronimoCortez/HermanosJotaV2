@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001/api/productos";
+const BASE_URL = "/api/productos";
 
 export const getProductos = async () => {
   const response = await fetch(BASE_URL);
@@ -17,5 +17,33 @@ export const getProductoById = async (id) => {
   if (!response.ok) {
     throw new Error("Error al obtener el producto");
   }
-  return await response.json();
+
+  const data = await response.json();
+  return data;
+};
+
+export const createNewProduct = async (product) => {
+  const response = await fetch(BASE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(product),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al crear producto");
+  }
+
+  return response.data;
+};
+
+export const deleteProduct = async (id) => {
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al borrar producto");
+  }
+
+  return response.data;
 };

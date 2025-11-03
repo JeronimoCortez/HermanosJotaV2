@@ -1,16 +1,15 @@
-import express from "express";
+const productosRouter = require("express").Router();
 
-import { listarProductos, listarProductoPorId, crearProducto, actualizarProducto, eliminarProducto } from "../controllers/ProductoController.js";
+const productService = require("../controllers/ProductoController.js");
 
-export const productRoutes = express.Router();
+productosRouter.get("/", productService.listarProductos);
 
-productRoutes.get('/', listarProductos);
+productosRouter.get("/:id", productService.listarProductoPorId);
 
-productRoutes.get('/:id', listarProductoPorId)
+productosRouter.post("/", productService.crearProducto);
 
-productRoutes.post('/', crearProducto)
+productosRouter.put("/:id", productService.actualizarProducto);
 
-productRoutes.put('/:id', actualizarProducto)
+productosRouter.delete("/:id", productService.eliminarProducto);
 
-productRoutes.delete('/:id', eliminarProducto)
-
+module.exports = { productosRouter };

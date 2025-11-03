@@ -1,23 +1,17 @@
 import { Trash } from "lucide-react";
-import "./EliminarProductoButton.css"
+import { deleteProduct } from "../../../api/productosApi";
+import "./EliminarProductoButton.css";
+import { useNavigate } from "react-router-dom";
 const EliminarProductoButton = ({ id }) => {
+  const navigate = useNavigate();
+
   const eliminarProducto = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/api/productos/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-      if (response.ok) {
-        // usar api de alerta exito
-      } else {
-        // usar api de alerta error
-      }
-    } catch (error) {
-      // usar api de alerta error
+    if (window.confirm("Estas seguro de borrar el producto")) {
+      deleteProduct(id);
+      navigate("/productos");
     }
   };
+
   return (
     <div className="container-button">
       <button className="delete-button" onClick={eliminarProducto}>

@@ -1,61 +1,76 @@
-import {Producto} from "../persistence/modelos/Producto.js";
+const Producto = require("../persistence/modelos/Producto.js");
 
-export const listarProductos = async (req, res) => {
+const listarProductos = async (req, res, next) => {
   try {
     const productos = await Producto.find();
     if (productos.length === 0) {
-      return res
-        .status(204)
-        .json({ message: "No hay productos en la base de datos" });
+      const error = new Error("No hay productos en la base de datos");
+      error.status = 204;
+      next(error);
     }
 
     return res.status(200).json(productos);
-  } catch (error) {
-    return res.status(500).json({ meesage: `ERROR: ${error}` });
+  } catch (err) {
+    const error = new Error("Error al obtener productos");
+    error.status = 400;
+    next(error);
   }
 };
 
-export const listarProductoPorId = async (req, res) => {
+const listarProductoPorId = async (req, res, next) => {
   const { id } = req.params;
   try {
     const producto = await Producto.findById(id);
     if (!producto) {
-      return res.status(204).json({ message: "No hay producto con id: ", id });
+      const error = new Error(`No se encotro producto con id: ${id}`);
+      error.status = 404;
+      next(error);
+      return;
     }
     return res.status(200).json(producto);
-  } catch (error) {
-    return res.status(500).json({ meesage: `ERROR: ${error}` });
+  } catch (err) {
+    const error = new Error("Error al obtener los productos");
+    error.status = 500;
+    next(error);
   }
 };
 
-export const crearProducto = async (req, res) => {
-  const { nombre, descripcion, precio, imageUrl, categoria, stock, caracteristicas } = req.body;
+const crearProducto = async (req, res, next) => {
+  const {
+    nombre,
+    descripcion,
+    precio,
+    imageUrl,
+    categoria,
+    stock,
+    caracteristicas,
+  } = req.body;
   try {
     if (!nombre || !precio) {
-      return res
-        .status(400)
-        .json({
-          message: "Debe enviar los campos obligatorios (nombre, precio)",
-        });
+      return res.status(400).json({
+        message: "Debe enviar los campos obligatorios (nombre, precio)",
+      });
     }
     const nuevoProducto = new Producto({
-      nombre: nombre,
-      descripcion: descripcion || "",
-      precio: precio,
-      imageUrl: imageUrl || "",
-      categoria: categoria || "",
-      stock: stock || "",
-      caracteristicas: caracteristicas || ""
+      nombre,
+      descripcion,
+      precio,
+      imageUrl,
+      categoria,
+      stock,
+      caracteristicas,
     });
 
     const data = await nuevoProducto.save();
     return res.status(204).json(data);
-  } catch (error) {
-    return res.status(500).json(`ERROR: ${error}`);
+  } catch (err) {
+    const error = new Error(err.message);
+    error.status = 401;
+    next(error);
   }
 };
 
-export const actualizarProducto = async (req, res) => {
+const actualizarProducto = async (req, res, next) => {
   try {
     const { id } = req.params;
     const datosActualizados = req.body;
@@ -66,17 +81,29 @@ export const actualizarProducto = async (req, res) => {
     });
 
     return res.status(201).json(producto);
-  } catch (error) {
-    return res.status(500).json({ message: `ERROR: ${error}` });
+  } catch (err) {
+    const error = new Error(err.message);
+    error.status = 400;
+    next(error);
   }
 };
 
-export const eliminarProducto = async (req, res) => {
+const eliminarProducto = async (req, res, next) => {
   try {
     const { id } = req.params;
     await Producto.findByIdAndDelete(id);
     return res.status(200).json({ message: "Proyecto eliminado con exito" });
-  } catch (error) {
-    return res.status(500).json({ message: `ERROR: ${error}` });
+  } catch (err) {
+    const error = new Error(err.message);
+    error.status = 400;
+    next(error);
   }
+};
+
+module.exports = {
+  listarProductos,
+  listarProductoPorId,
+  crearProducto,
+  eliminarProducto,
+  actualizarProducto,
 };

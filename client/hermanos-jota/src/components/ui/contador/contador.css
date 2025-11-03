@@ -1,0 +1,16 @@
+.contador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid #d9d9d9;
+  max-width: 5rem;
+  border-radius: 0.5rem;
+}
+
+.contador button {
+  all: unset;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0 0.5rem;
+}

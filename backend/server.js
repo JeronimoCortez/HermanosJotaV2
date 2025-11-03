@@ -1,37 +1,26 @@
-import "dotenv/config"
-import connectDB from "./persistence/dbConfig.js";
-import express from "express"
-import {productRoutes} from './routes/productRoutes.js'
-
+require("dotenv").config();
+const { connectDB } = require("./persistence/dbConfig.js");
+const express = require("express");
+const cors = require("cors");
+const middleware = require("./middleware.js");
+const { productosRouter } = require("./routes/productRoutes.js");
 
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-connectDB()
+connectDB();
+
+app.use(cors());
 
 app.use(express.json());
+app.use(middleware.logger);
 
-app.get('/', (req, res) => {
-    res.send('Bienvenido al servidor de Muebleria Jota');
-})
+app.use("/api/productos", productosRouter);
 
-// app.use((req, res, next) => {
-//     const error = new Error('Ruta no encontrada');
-//     error.status = 404;
-//     next(error)
-// });
+app.use(middleware.errorHandler);
+app.use(middleware.unknownEndpoint);
 
-// app.use((err, req, res, next)=>{
-//     const status = err.status || 500;
-//     res.status(status).json({
-//         status:"Error",
-//         message:err.message
-//     })
-// })
-
-app.use('/api/productos', productRoutes)
-
-app.listen(PORT, ()=>{
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);    
-})
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});

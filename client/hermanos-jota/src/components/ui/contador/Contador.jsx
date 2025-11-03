@@ -1,4 +1,4 @@
-import "./Contador.css";
+import "./contador.css";
 
 const Contador = ({ max, contador, setContador }) => {
   function sumarContador() {

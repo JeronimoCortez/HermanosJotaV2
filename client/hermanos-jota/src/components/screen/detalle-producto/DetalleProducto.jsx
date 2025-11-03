@@ -5,11 +5,13 @@ const DetalleProducto = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [contador, setContador] = useState(1);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const fecthProductoById = async (id) => {
     if (id) {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:3001/api/productos/${id}`,
+        `${API_URL}/${id}`,
         {
           method: "GET",
         }

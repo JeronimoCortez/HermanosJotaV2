@@ -1,22 +1,21 @@
-const DetalleProducto = () => {
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getProductoById } from "../../../api/productosApi";
+import Contador from "../../ui/contador/Contador";
+import EliminarProductoButton from "../../ui/EliminarProductoButton/EliminarProductoButton";
+import "./DetalleProducto.css";
+
+const DetalleProducto = ({ sumarAlCarrito }) => {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [contador, setContador] = useState(1);
 
-  const API_URL = import.meta.env.VITE_API_URL;
-
   const fecthProductoById = async (id) => {
     if (id) {
       setLoading(true);
-      const response = await fetch(
-        `${API_URL}/${id}`,
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
+      const data = await getProductoById(id);
       console.log(data);
 
       setProducto(data);
@@ -42,7 +41,7 @@ const DetalleProducto = () => {
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [producto?.img]);
+  }, [producto?.imageUrl]);
 
   if (loading) {
     return <p>Cargando producto...</p>;
@@ -63,11 +62,11 @@ const DetalleProducto = () => {
           {!imageLoaded && <p>Cargando imagen...</p>}
           <img
             className="producto-img"
-            src={producto.img}
+            src={producto.imageUrl}
             alt={producto.nombre}
             onLoad={() => setImageLoaded(true)}
             onError={() => {
-              console.error("Error al cargar la imagen:", producto.img);
+              console.error("Error al cargar la imagen:", producto.imageUrl);
               setImageLoaded(true);
             }}
             style={{ display: imageLoaded ? "block" : "none" }}
@@ -91,6 +90,7 @@ const DetalleProducto = () => {
             >
               Comprar
             </button>
+            <EliminarProductoButton id={id} />
           </div>
         </div>
         <div className="producto-caracteristicas">

@@ -11,7 +11,7 @@ const Footer = () => {
       <section className="footer-info">
         <Link to="/">
           <img
-            src="./public/assets/logo-blanco.svg"
+            src="../assets/logo-blanco.svg"
             alt="Logo Mueblería Hermanos Jota"
             width="100"
           />

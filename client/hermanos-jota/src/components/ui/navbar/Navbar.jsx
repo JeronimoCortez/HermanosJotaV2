@@ -16,7 +16,7 @@ const Navbar = ({ setOpenCarrito, total }) => {
       <div className="logo">
         <Link to="/">
           <img
-            src="./public/assets/logo.svg"
+            src="../assets/logo.svg"
             alt="Logo Mueblería Hermanos Jota"
             width="40"
           />

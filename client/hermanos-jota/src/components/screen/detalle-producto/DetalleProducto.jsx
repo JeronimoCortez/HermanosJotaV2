@@ -1,22 +1,22 @@
-const DetalleProducto = () => {
-  const { id } = useParams();
+import "./DetalleProducto.css";
+import Contador from "../../ui/contador/Contador";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getProductoById } from "../../../api/productosApi";
+import EliminarProductoButton from "../../ui/EliminarProductoButton/EliminarProductoButton";
+
+const DetalleProducto = ({ sumarAlCarrito }) => {
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [contador, setContador] = useState(1);
 
+  const { id } = useParams();
+
   const fecthProductoById = async (id) => {
     if (id) {
       setLoading(true);
-      const response = await fetch(
-        `http://localhost:3001/api/productos/${id}`,
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-
+      const data = await getProductoById(id);
       setProducto(data);
       setLoading(false);
       setImageLoaded(false);
@@ -61,11 +61,11 @@ const DetalleProducto = () => {
           {!imageLoaded && <p>Cargando imagen...</p>}
           <img
             className="producto-img"
-            src={producto.img}
+            src={producto.imageUrl}
             alt={producto.nombre}
             onLoad={() => setImageLoaded(true)}
             onError={() => {
-              console.error("Error al cargar la imagen:", producto.img);
+              console.error("Error al cargar la imagen:", producto.imageUrl);
               setImageLoaded(true);
             }}
             style={{ display: imageLoaded ? "block" : "none" }}
@@ -89,6 +89,7 @@ const DetalleProducto = () => {
             >
               Comprar
             </button>
+            <EliminarProductoButton id={id} />
           </div>
         </div>
         <div className="producto-caracteristicas">

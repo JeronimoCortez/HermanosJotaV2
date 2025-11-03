@@ -10,7 +10,7 @@ const Footer = () => {
       <section className="footer-info">
         <a href="/">
           <img
-            src="../src/assets/logo-blanco.svg"
+            src="./assets/logo-blanco.svg"
             alt="Logo Mueblería Hermanos Jota"
             width="100"
           />

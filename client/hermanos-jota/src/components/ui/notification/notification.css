@@ -1,0 +1,16 @@
+.notification-container {
+  width: 80%;
+  margin: 20px auto;
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.danger {
+  background-color: #f8d7da;
+  border: 1px solid #dc3545;
+}
+
+.succes {
+  background-color: #d1e7dd;
+  border: 1px solid #198754;
+}

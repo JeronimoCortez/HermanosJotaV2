@@ -30,7 +30,9 @@ const FiltrosSection = ({ onFiltrar }) => {
   };
   return (
     <section className="filtros">
-      <h3>Filtros</h3>
+      <h3>
+        <span className="material-symbols-outlined">filter_alt</span>Filtros
+      </h3>
       <div className="filtros-menu">
         <div className="categoria">
           <h4>Categoria</h4>

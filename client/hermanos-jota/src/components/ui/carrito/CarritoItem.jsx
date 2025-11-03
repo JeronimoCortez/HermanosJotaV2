@@ -7,13 +7,13 @@ const CarritoItem = ({ item, editarCantidad, eliminarDelCarrito }) => {
 
   return (
     <div className="carrito-item">
-      <img src={item.producto.img} alt={item.producto.nombre} />
+      <img src={item.producto?.img} alt={item.producto?.nombre} />
       <div className="carrito-info">
-        <strong>{item.producto.nombre}</strong>
+        <strong>{item.producto?.nombre}</strong>
         <br />
-        <small>Unitario: $${item.producto.precio}</small>
+        <small>Unitario: $${item.producto?.precio}</small>
         <br />
-        <strong>$${item.producto.precio * item.cantidad}</strong>
+        <strong>$${item.producto?.precio * item.cantidad}</strong>
         <div className="cantidad-control">
           <button onClick={() => modificarCantidad(item.cantidad - 1)}>
             -

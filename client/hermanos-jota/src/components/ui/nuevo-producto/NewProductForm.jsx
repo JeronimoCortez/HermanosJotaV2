@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./NewProduct.css";
+import "./NuevoProducto.css";
 import { createNewProduct } from "../../../api/productosApi";
 import Notification from "../notification/Notification";
 import { useNavigate } from "react-router-dom";

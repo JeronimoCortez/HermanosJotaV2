@@ -11,12 +11,7 @@ const PORT = process.env.PORT || 4000;
 
 connectDB();
 
-app.use(
-  cors({
-    origin: "https://hermanos-jota-v2.vercel.app",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 app.use(middleware.logger);

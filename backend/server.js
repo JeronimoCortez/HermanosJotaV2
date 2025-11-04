@@ -13,7 +13,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "https://hermanos-jota-v2.vercel.app/",
+    origin: "https://hermanos-jota-v2.vercel.app",
     credentials: true,
   })
 );

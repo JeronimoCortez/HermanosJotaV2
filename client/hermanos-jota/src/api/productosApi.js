@@ -1,7 +1,12 @@
 const BASE_URL = "/api/productos";
 
 export const getProductos = async () => {
-  const response = await fetch(BASE_URL);
+  const response = await fetch(BASE_URL, {
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   if (!response.ok) {
     throw new Error("No se pudo obtener la lista de productos");
   }

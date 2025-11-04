@@ -4,12 +4,12 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
+  /* server: {
     proxy: {
       "/api/productos": {
         target: "https://hermanosjotav2.onrender.com",
         changeOrigin: true,
       },
     },
-  },
+  }, */
 });

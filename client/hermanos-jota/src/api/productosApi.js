@@ -1,7 +1,7 @@
-const BASE_URL = "/api/productos";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const getProductos = async () => {
-  const response = await fetch(BASE_URL);
+  const response = await fetch(`${BASE_URL}`);
   if (!response.ok) {
     throw new Error("No se pudo obtener la lista de productos");
   }

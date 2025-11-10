@@ -1,10 +1,18 @@
-const ProductCard = ({ producto, verProductoDetalle, clase }) => {
+import { useNavigate } from "react-router-dom";
+
+const ProductCard = ({ producto, clase }) => {
+  const navigate = useNavigate();
+
+  function verProductoDetalle() {
+    navigate(`/productos/${producto._id}`);
+  }
+
   return (
     <article
       className={
         clase === "destacados" ? "productos-item-destacados" : "productos-item"
       }
-      onClick={() => verProductoDetalle(producto._id)}
+      onClick={verProductoDetalle}
     >
       <img src={`${producto.imageUrl}`} alt={producto.nombre} />
       <div className="productos-descripcion">

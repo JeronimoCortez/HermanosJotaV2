@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-const ProductList = ({ productos, verProductoDetalle, clase }) => {
+const ProductList = ({ productos, clase }) => {
   if (!productos) return <div></div>;
   return (
     <>
@@ -10,12 +10,7 @@ const ProductList = ({ productos, verProductoDetalle, clase }) => {
         </div>
       ) : (
         productos.map((producto, i) => (
-          <ProductCard
-            key={i}
-            producto={producto}
-            verProductoDetalle={verProductoDetalle}
-            clase={clase}
-          />
+          <ProductCard key={i} producto={producto} clase={clase} />
         ))
       )}
     </>

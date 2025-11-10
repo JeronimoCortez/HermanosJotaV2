@@ -4,13 +4,10 @@ import ProductList from "../../ui/productos/ProductList";
 import "./productos.css";
 import HeroProductoContacto from "../../ui/hero-producto-contacto/HeroProductoContacto";
 import { getProductos } from "../../../api/productosApi";
-import { useNavigate } from "react-router-dom";
 
 const ProductPage = ({ loading }) => {
   const [productosFiltrados, setProductosFiltrados] = useState([]);
   const [productos, setProductos] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -60,11 +57,6 @@ const ProductPage = ({ loading }) => {
     setProductosFiltrados(filtrados);
   }
 
-  function verProductoDetalle(id) {
-    console.log(id);
-    navigate(`/productos/${id}`);
-  }
-
   return (
     <>
       <HeroProductoContacto
@@ -82,10 +74,7 @@ const ProductPage = ({ loading }) => {
             {loading ? (
               <p style={{ margin: "0 auto" }}>Cargando productos...</p>
             ) : (
-              <ProductList
-                productos={productosFiltrados}
-                verProductoDetalle={verProductoDetalle}
-              />
+              <ProductList productos={productosFiltrados} />
             )}
           </section>
         </div>

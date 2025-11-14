@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MobileMenu from "./MobileMenu";
 import "./navbar.css";
 import NavLinks from "./NavLinks";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Navbar = ({ setOpenCarrito, total }) => {
   const [visible, setVisible] = useState(false);
+  const { currentUser, logout } = useContext(AuthContext)
 
   function open() {
     setOpenCarrito(true);
@@ -52,6 +54,11 @@ const Navbar = ({ setOpenCarrito, total }) => {
           </g>
         </svg>
         <input type="text" placeholder="Buscar" className="input-search" />
+        {currentUser ?
+          <button onClick={logout}>Cerrar sesión</button>
+          :
+          <Link to="/login">Iniciar sesión</Link>
+        }
 
         <div id="icono-carrito" className="carrito-icono" onClick={open}>
           <svg

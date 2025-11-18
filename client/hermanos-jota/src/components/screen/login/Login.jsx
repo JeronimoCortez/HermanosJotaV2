@@ -1,8 +1,11 @@
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
+import './login.css'
 
 export default function Login() {
     const { login, loading, setLoading } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
@@ -15,7 +18,7 @@ export default function Login() {
                 return
             }
             await login({ email, password });
-            alert("Login exitoso");
+            navigate("/");
         } catch (err) {
             setError(err.message)
         } finally {
@@ -28,16 +31,16 @@ export default function Login() {
     return (
         <div className="login-page">
             <h2>Inicia sesión</h2>
-            {loading ? <p>Cargando...</p> : null}
             <form className="login-form" onSubmit={handleSubmit}>                
                 <label className="login-form__label">
                     Email
                     <input
                         className="login-form__input"
-                        type="text"
+                        type="email"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                         placeholder="Ingresa tu email"
+                        disabled={loading}
                     />
                 </label>
                 <label className="login-form__label">
@@ -48,11 +51,16 @@ export default function Login() {
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                         placeholder="Ingresa tu contraseña"
+                        disabled={loading}
                     />
                 </label>
                 {error && <p className="login-form__error">{error}</p>}
-                <button className="login-form__button" type="submit">
-                    Entrar
+                <button 
+                    className="login-form__button" 
+                    type="submit"
+                    disabled={loading}
+                >
+                    {loading ? 'Iniciando sesión...' : 'Entrar'}
                 </button>
             </form>
         </div>

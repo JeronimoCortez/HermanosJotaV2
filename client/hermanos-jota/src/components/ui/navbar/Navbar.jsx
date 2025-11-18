@@ -2,16 +2,23 @@ import { useContext, useState } from "react";
 import MobileMenu from "./MobileMenu";
 import "./navbar.css";
 import NavLinks from "./NavLinks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
+import { LogOut } from 'lucide-react'
 
 const Navbar = ({ setOpenCarrito, total }) => {
   const [visible, setVisible] = useState(false);
-  const { currentUser, logout } = useContext(AuthContext)
+  const { currentUser, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   function open() {
     setOpenCarrito(true);
   }
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <header>
@@ -55,9 +62,12 @@ const Navbar = ({ setOpenCarrito, total }) => {
         </svg>
         <input type="text" placeholder="Buscar" className="input-search" />
         {currentUser ?
-          <button onClick={logout}>Cerrar sesión</button>
+          <div className="user-info-desktop" style={{ display: "flex", alignContent: "center", gap: "10px" }}>
+            <h2>{currentUser.username}</h2>
+            <LogOut onClick={handleLogout} style={{ cursor: "pointer" }} />
+          </div>
           :
-          <Link to="/login">Iniciar sesión</Link>
+          <Link className="login-link-desktop" to="/login">Iniciar sesión</Link>
         }
 
         <div id="icono-carrito" className="carrito-icono" onClick={open}>
@@ -94,7 +104,12 @@ const Navbar = ({ setOpenCarrito, total }) => {
           </svg>
         </button>
       </div>
-      <MobileMenu setVisible={setVisible} visible={visible} />
+      <MobileMenu 
+        setVisible={setVisible} 
+        visible={visible} 
+        currentUser={currentUser}
+        handleLogout={handleLogout}
+      />
     </header>
   );
 };

@@ -9,6 +9,7 @@ import DetalleProducto from "./components/screen/detalle-producto/DetalleProduct
 import NewProductPage from "./components/screen/nuevo-producto/NewProductPage";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import Login from "./components/screen/login/Login";
 
 function App() {
   const [openCarrito, setOpenCarrito] = useState(false);
@@ -57,6 +58,7 @@ function App() {
           element={<DetalleProducto sumarAlCarrito={sumarAlCarrito} />}
         />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/admin/crear-producto" element={<NewProductPage />} />
       </Routes>
       <Footer />

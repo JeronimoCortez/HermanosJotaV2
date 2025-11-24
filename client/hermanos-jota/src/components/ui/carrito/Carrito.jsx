@@ -1,27 +1,17 @@
 import "./carrito.css";
 import CarritoItem from "./CarritoItem";
+import { useContext } from "react";
+import { CartContext } from "../../../context/CartContext";
 
-const Carrito = ({
-  openCarrito,
-  setOpenCarrito,
-  carrito,
-  setCarrito,
-  total,
-}) => {
-
-  
-  function close() {
-    setOpenCarrito(false);
-  }
-
-  function editarCantidad(id, cantidad) {
-    setCarrito(carrito.map((p) => (p.id === id ? { ...p, cantidad } : p)));
-  }
-
-  function eliminarDelCarrito(producto) {
-    const nuevoCarrito = carrito.filter((el) => el.id !== producto);
-    setCarrito(nuevoCarrito);
-  }
+const Carrito = () => {
+  const {
+    openCarrito,
+    carrito,
+    close,
+    total,
+    eliminarDelCarrito,
+    editarCantidad,
+  } = useContext(CartContext);
 
   return (
     <div

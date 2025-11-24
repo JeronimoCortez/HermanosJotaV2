@@ -1,16 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { getProductoById } from "../../../api/productosApi";
 import Contador from "../../ui/contador/Contador";
 import EliminarProductoButton from "../../ui/EliminarProductoButton/EliminarProductoButton";
 import "./DetalleProducto.css";
+import { CartContext } from "../../../context/CartContext";
 
-const DetalleProducto = ({ sumarAlCarrito }) => {
+const DetalleProducto = () => {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [contador, setContador] = useState(1);
+
+  const { sumarAlCarrito } = useContext(CartContext);
 
   const fecthProductoById = async (id) => {
     if (id) {

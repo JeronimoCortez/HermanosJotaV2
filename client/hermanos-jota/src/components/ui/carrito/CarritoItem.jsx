@@ -7,7 +7,7 @@ const CarritoItem = ({ item, editarCantidad, eliminarDelCarrito }) => {
 
   return (
     <div className="carrito-item">
-      <img src={item.producto?.img} alt={item.producto?.nombre} />
+      <img src={item.producto?.imageUrl} alt={item.producto?.nombre} />
       <div className="carrito-info">
         <strong>{item.producto?.nombre}</strong>
         <br />

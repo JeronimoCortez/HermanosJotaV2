@@ -22,7 +22,7 @@ function App() {
   }, [carrito]);
 
   function sumarAlCarrito(producto, cantidad) {
-    if (carrito.find((el) => el.producto.id === producto.id)) {
+    if (carrito.find((el) => el.producto._id === producto._id)) {
       setCarrito(
         carrito.map((el) =>
           el.producto.id === producto.id

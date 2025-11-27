@@ -139,3 +139,15 @@ header > div {
     transform: translateX(0);
   }
 }
+
+@media (max-width: 415px) {
+  .buscador {
+    gap: 0;
+  }
+}
+
+@media (max-width: 350px) {
+  .input-search {
+    display: none;
+  }
+}

@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const middleware = require("./middleware.js");
 const { productosRouter } = require("./routes/productRoutes.js");
+const { userRouter } = require("./routes/userRoutes.js");
+const { loginRouter } = require("./routes/loginRoutes.js");
 
 const app = express();
 
@@ -12,8 +14,8 @@ const PORT = process.env.PORT || 4000;
 connectDB();
 
 const originsList = [
-  "https://hermanos-jota-v2.vercel.app", 
-  "http://localhost:5173"
+  "https://hermanos-jota-v2.vercel.app",
+  "http://localhost:5173",
 ];
 
 const corsOptions = {
@@ -34,13 +36,14 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-
 app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(middleware.logger);
 
 app.use("/api/productos", productosRouter);
+app.use("/api/register", userRouter);
+app.use("/api/login", loginRouter);
 
 app.use(middleware.errorHandler);
 app.use(middleware.unknownEndpoint);

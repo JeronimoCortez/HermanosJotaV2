@@ -22,14 +22,15 @@ const NavLinks = ({ setVisible }) => {
   return (
     <ul>
       {LINKS.map((link, i) => (
-        <Link
-          className="nav-link"
-          key={i}
-          to={`${link.to}`}
-          onClick={() => setVisible(false)}
-        >
-          {link.display}
-        </Link>
+        <li key={i}>
+          <Link
+            className="nav-link"
+            to={`${link.to}`}
+            onClick={() => setVisible && setVisible(false)}
+          >
+            {link.display}
+          </Link>
+        </li>
       ))}
     </ul>
   );

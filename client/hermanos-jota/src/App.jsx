@@ -9,7 +9,6 @@ import DetalleProducto from "./components/screen/detalle-producto/DetalleProduct
 import NewProductPage from "./components/screen/nuevo-producto/NewProductPage";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import CarritoScreen from "./components/screen/carrito/CarritoScreen";
 
 function App() {
   const [openCarrito, setOpenCarrito] = useState(false);
@@ -58,8 +57,27 @@ function App() {
           element={<DetalleProducto sumarAlCarrito={sumarAlCarrito} />}
         />
         <Route path="/contacto" element={<Contacto />} />
-        <Route path="/carrito" element={<CarritoScreen />} />
         <Route path="/admin/crear-producto" element={<NewProductPage />} />
+       
+       
+       {/* Rutas protegidas */}
+        <Route
+          path="/perfil"
+          element={
+            <ProtectedRoute>
+              {/* <Perfil /> */}
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/carrito"
+          element={
+            <ProtectedRoute>
+              {/* <CarritoPage /> */}
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer />
     </div>

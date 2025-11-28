@@ -4,11 +4,13 @@ import Navbar from "./components/ui/navbar/Navbar";
 import Footer from "./components/ui/footer/Footer";
 import Carrito from "./components/ui/carrito/Carrito";
 import HomePage from "./components/screen/home-page/home-page";
+import CarritoScreen from "./components/screen/carrito/CarritoScreen";
 import Contacto from "./components/screen/contacto/Contacto";
 import DetalleProducto from "./components/screen/detalle-producto/DetalleProducto";
 import NewProductPage from "./components/screen/nuevo-producto/NewProductPage";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 
 function App() {
   const [openCarrito, setOpenCarrito] = useState(false);
@@ -74,7 +76,7 @@ function App() {
           path="/carrito"
           element={
             <ProtectedRoute>
-              {/* <CarritoPage /> */}
+              <CarritoScreen /> 
             </ProtectedRoute>
           }
         />

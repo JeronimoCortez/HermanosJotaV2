@@ -1,0 +1,41 @@
+.carrito__vista{
+    width: 80vw;
+    min-height: 40vh;
+    margin: 10px auto;
+    padding: .4rem;
+}
+
+.carrito__vista-titulo{
+    text-align: center;
+}
+
+.carrito__vista-tabla {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #d9d9d9;
+    border-radius: .5rem;
+    margin: .5rem;
+    padding: 5px;
+    align-items: center;
+}
+
+.carrito__vista-tabla img{
+    width: 60px;
+    object-fit: cover;
+}
+
+.carrito__vista-btn{
+    background: var(--color-siena-tostado);
+    padding: 10px 15px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 420px) {
+    .carrito__vista{
+        width: 95vw;
+    }
+}

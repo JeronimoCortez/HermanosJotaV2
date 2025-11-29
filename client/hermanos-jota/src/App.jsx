@@ -6,10 +6,10 @@ import Carrito from "./components/ui/carrito/Carrito";
 import HomePage from "./components/screen/home-page/home-page";
 import Contacto from "./components/screen/contacto/Contacto";
 import DetalleProducto from "./components/screen/detalle-producto/DetalleProducto";
-import NewProductPage from "./components/screen/nuevo-producto/NewProductPage";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/screen/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AdminPage from "./components/screen/admin/AdminPage";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="/productos/:id" element={<DetalleProducto />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin/crear-producto" element={<NewProductPage />} />
+        <Route path="/admin" element={<AdminPage />} />
 
         {/* Rutas protegidas */}
         <Route

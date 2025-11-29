@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { getProductoById } from "../../../api/productosApi";
 import Contador from "../../ui/contador/Contador";
-import EliminarProductoButton from "../../ui/EliminarProductoButton/EliminarProductoButton";
 import "./DetalleProducto.css";
 import { CartContext } from "../../../context/CartContext";
 
@@ -93,7 +92,6 @@ const DetalleProducto = () => {
             >
               Comprar
             </button>
-            <EliminarProductoButton id={id} />
           </div>
         </div>
         <div className="producto-caracteristicas">

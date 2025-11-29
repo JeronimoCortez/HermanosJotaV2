@@ -13,10 +13,6 @@ const LINKS = [
     to: "contacto",
     display: "Contacto",
   },
-  {
-    to: "admin/crear-producto",
-    display: "Agregar producto",
-  },
 ];
 const NavLinks = ({ setVisible }) => {
   return (

@@ -1,28 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import FiltrosSection from "../../ui/productos/FiltrosSection";
 import ProductList from "../../ui/productos/ProductList";
 import "./productos.css";
 import HeroProductoContacto from "../../ui/hero-producto-contacto/HeroProductoContacto";
-import { getProductos } from "../../../api/productosApi";
+
+import { ProductosContext } from "../../../context/ProductosContext";
 
 const ProductPage = ({ loading }) => {
   const [productosFiltrados, setProductosFiltrados] = useState([]);
-  const [productos, setProductos] = useState([]);
-
-  useEffect(() => {
-    const fetchProductos = async () => {
-      try {
-        const data = await getProductos();
-        setProductos(data);
-        setProductosFiltrados(data);
-        console.log("Productos recibidos", productos);
-      } catch (error) {
-        console.error("Error al cargar productos", error);
-      }
-    };
-    fetchProductos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { productos } = useContext(ProductosContext);
 
   useEffect(() => {
     setProductosFiltrados(productos);

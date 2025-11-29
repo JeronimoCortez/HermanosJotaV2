@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./NuevoProducto.css";
-import { createNewProduct } from "../../../api/productosApi";
 import Notification from "../notification/Notification";
-import { useNavigate } from "react-router-dom";
+import { ProductosContext } from "../../../context/ProductosContext";
 
 const CATEGORIAS = ["sala", "dormitorio", "comedor", "oficina"];
 
@@ -16,14 +15,14 @@ const INITIAL_FORM = {
   caracteristicas: [],
 };
 
-const NewProductForm = () => {
-  const [form, setForm] = useState(INITIAL_FORM);
+const NewProductForm = ({ setVista, productoParaEditar }) => {
+  const [form, setForm] = useState(productoParaEditar || INITIAL_FORM);
   const [caracteristica, setCaracteristica] = useState("");
   const [notification, setNotification] = useState({ message: "", status: "" });
 
-  const formRef = useRef(null);
+  const { actualizarProducto, crearProducto } = useContext(ProductosContext);
 
-  const navigate = useNavigate();
+  const formRef = useRef(null);
 
   useEffect(() => {
     if (notification) {
@@ -106,15 +105,23 @@ const NewProductForm = () => {
         status: "danger",
       });
     } else {
-      createNewProduct(form);
-      setForm(INITIAL_FORM);
-      setCaracteristica("");
-      setNotification({
-        message: "Producto creado con éxito",
-        status: "succes",
-      });
+      if (productoParaEditar) {
+        actualizarProducto(productoParaEditar._id, form);
+        setNotification({
+          message: "Producto ediato con éxito",
+          status: "succes",
+        });
+      } else {
+        crearProducto(form);
+        setForm(INITIAL_FORM);
+        setCaracteristica("");
+        setNotification({
+          message: "Producto creado con éxito",
+          status: "succes",
+        });
+      }
       setTimeout(() => {
-        navigate("/productos");
+        setVista("productos");
       }, 3000);
     }
   }
@@ -131,6 +138,7 @@ const NewProductForm = () => {
         onSubmit={handleSubmit}
       >
         <div>
+          <h3 className="form-title">Agregar Producto</h3>
           <label htmlFor="nombre">Nombre: *</label>
           <br />
           <input

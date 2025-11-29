@@ -1,0 +1,114 @@
+.admin-page {
+  background-color: var(--color-alabastro-calido);
+}
+
+.admin-page-container {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.admin-page-header {
+  margin-top: 25px;
+}
+
+.admin-page-header h1,
+.admin-page-header span {
+  margin-bottom: 8px;
+}
+
+.admin-page-header h1 {
+  color: var(--color-siena-tostado);
+}
+
+.panel-control {
+  margin-bottom: 30px;
+}
+
+.panel-control-links {
+  max-width: 200px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  padding: 5px 8px;
+  margin: 25px 0;
+  background-color: var(--color-siena-tostado);
+}
+
+.panel-control-link {
+  padding: 5px 8px;
+  color: white;
+}
+
+.admin-pages-item {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 20px 0;
+}
+
+.admin-pages-item-header {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto;
+}
+
+.admin-pages-item-header h3 {
+  color: var(--color-siena-tostado);
+}
+
+.admin-pages-item-header h3,
+.admin-pages-item-header span {
+  padding-bottom: 5px;
+}
+
+.admin-pages-btn-agregar {
+  color: white;
+  background-color: var(--color-vara-de-oro);
+  padding: 8px 12px;
+  border: none;
+  margin-left: auto;
+}
+
+.admin-pages-item-table-container {
+  width: 95%;
+  margin: 20px auto;
+  overflow-x: auto;
+}
+
+.admin-pages-item-table {
+  min-width: 600px;
+  min-height: 350px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-pages-item-table tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-pages-item-table tr td {
+  padding: 4px 0;
+}
+
+.admin-pages-item-table button {
+  color: white;
+  padding: 8px 12px;
+  border: none;
+}
+
+.admin-table-btn-editar {
+  background-color: var(--color-siena-tostado);
+}
+
+.admin-table-btn-eliminar {
+  background-color: #dc3545;
+}
+
+.admin-table-vacia {
+  text-align: center;
+}

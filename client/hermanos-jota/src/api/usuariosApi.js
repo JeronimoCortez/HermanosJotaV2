@@ -48,3 +48,17 @@ export const editarUsuario = async (id, usuarioAcutalizado) => {
 
   return response.data;
 };
+
+export const editarContraseña = async (id, password) => {
+  const response = await fetch(`${BASE_URL}/${id}/cambiar-password`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ newPassword: password }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al cambiar contraseña");
+  }
+
+  return response.data;
+};

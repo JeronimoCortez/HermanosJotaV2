@@ -19,6 +19,8 @@ export function AuthProvider({ children }) {
         setCurrentUser({
           id: decoded.id,
           username: decoded.username,
+          email: decoded.email,
+          rol: decoded.rol,
         });
       } catch (error) {
         console.error("Error decodificando token:", error);
@@ -50,6 +52,8 @@ export function AuthProvider({ children }) {
     setCurrentUser({
       id: decoded.id,
       username: decoded.username,
+      email: decoded.email,
+      rol: decoded.rol,
     });
   };
 

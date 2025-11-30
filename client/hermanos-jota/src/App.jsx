@@ -11,6 +11,7 @@ import Login from "./components/screen/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminPage from "./components/screen/admin/AdminPage";
 import Register from "./components/screen/register/Register";
+import UserPage from "./components/screen/user/UserPage";
 
 function App() {
   return (
@@ -24,12 +25,16 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<AdminPage />} />
 
         {/* Rutas protegidas */}
         <Route
           path="/perfil"
-          element={<ProtectedRoute>{/* <Perfil /> */}</ProtectedRoute>}
+          element={<ProtectedRoute>{<UserPage />}</ProtectedRoute>}
+        />
+
+        <Route
+          path="/admin"
+          element={<ProtectedRoute>{<AdminPage />}</ProtectedRoute>}
         />
 
         <Route

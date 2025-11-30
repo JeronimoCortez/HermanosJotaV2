@@ -4,6 +4,7 @@ import {
   createNuevoUsuario,
   deleteUsuario,
   editarUsuario,
+  editarContraseña,
 } from "../api/usuariosApi";
 
 const useUserHook = () => {
@@ -49,12 +50,26 @@ const useUserHook = () => {
         const data = await getUsuarios();
         setUsuarios(data);
       } catch (err) {
-        console.log("error al actualiar producto", err);
+        console.log("error al actualizar producto", err);
       }
     }
   };
 
-  return { usuarios, crearUsuario, eliminarUsuario, actualizarUsuario };
+  const actualizarContraseña = async (id, nuevaContraseña) => {
+    try {
+      await editarContraseña(id, nuevaContraseña);
+    } catch (err) {
+      console.log("error al cambiar contraseña", err);
+    }
+  };
+
+  return {
+    usuarios,
+    crearUsuario,
+    eliminarUsuario,
+    actualizarUsuario,
+    actualizarContraseña,
+  };
 };
 
 export default useUserHook;

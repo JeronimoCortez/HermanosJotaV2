@@ -65,7 +65,14 @@ const Navbar = () => {
             className="user-info-desktop"
             style={{ display: "flex", alignContent: "center", gap: "10px" }}
           >
-            <h2>{currentUser.username}</h2>
+            <h2>
+              <span
+                class="material-symbols-outlined"
+                onClick={() => navigate("/perfil")}
+              >
+                account_circle
+              </span>
+            </h2>
             <LogOut onClick={handleLogout} style={{ cursor: "pointer" }} />
           </div>
         ) : (

@@ -1,8 +1,10 @@
+import { useState } from "react";
 import AdminProductos from "../../ui/admin/AdminProductos";
 import AdminUsuarios from "../../ui/admin/AdminUsuarios";
 import "./admin.css";
 
 const AdminPage = () => {
+  const [vista, setVista] = useState("productos");
   return (
     <main className="admin-page">
       <div className="admin-page-container">
@@ -12,12 +14,30 @@ const AdminPage = () => {
         </div>
         <section className="panel-control">
           <div className="panel-control-links">
-            <span className="panel-control-link">Usuarios</span>
-            <span className="panel-control-link">Productos</span>
+            <span
+              className={
+                vista === "productos"
+                  ? "panel-control-link panel-active"
+                  : "panel-control-link"
+              }
+              onClick={() => setVista("productos")}
+            >
+              Productos
+            </span>
+            <span
+              className={
+                vista === "usuarios"
+                  ? "panel-control-link panel-active"
+                  : "panel-control-link"
+              }
+              onClick={() => setVista("usuarios")}
+            >
+              Usuarios
+            </span>
           </div>
           <div className="admin-pages">
-            <AdminProductos />
-            <AdminUsuarios />
+            {vista === "productos" && <AdminProductos />}
+            {vista === "usuarios" && <AdminUsuarios />}
           </div>
         </section>
       </div>

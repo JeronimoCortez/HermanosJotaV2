@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useUserHook from "../../../hooks/userHook";
+import "./userForm.css";
 
 const INITIAL_FORM = {
   username: "",
@@ -43,11 +44,12 @@ const UserForm = ({ setVista, usuarioParaEditar }) => {
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <label className="login-form__label">
+    <form className="login-form-user" onSubmit={handleSubmit}>
+      <h3>{usuarioParaEditar ? "Editar Usuario" : "Crear Usuario"}</h3>
+      <label className="login-form-user__label">
         Username
         <input
-          className="login-form__input"
+          className="login-form-user__input"
           type="text"
           name="username"
           value={form.username}
@@ -55,10 +57,10 @@ const UserForm = ({ setVista, usuarioParaEditar }) => {
           placeholder="Ingresa tu username"
         />
       </label>
-      <label className="login-form__label">
+      <label className="login-form-user__label">
         Email
         <input
-          className="login-form__input"
+          className="login-form-user__input"
           type="email"
           name="email"
           value={form.email}
@@ -66,30 +68,32 @@ const UserForm = ({ setVista, usuarioParaEditar }) => {
           placeholder="Ingresa tu email"
         />
       </label>
-      <label className="login-form__label">
-        Rol
-        <input
-          className="login-form__input"
-          type="text"
+      <label className="login-form-user__label">
+        <select
+          className="login-form-user__select"
           name="rol"
           value={form.rol}
           onChange={handleChange}
-          placeholder="Ingresa un rol"
-        />
+        >
+          <option value="user">user</option>
+          <option value="admin">admin</option>
+        </select>
       </label>
-      <label className="login-form__label">
-        Contraseña
-        <input
-          className="login-form__input"
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          placeholder="Ingresa tu contraseña"
-        />
-      </label>
-      {error && <p className="login-form__error">{error}</p>}
-      <button className="login-form__button" type="submit">
+      {!usuarioParaEditar && (
+        <label className="login-form-user__label">
+          Contraseña
+          <input
+            className="login-form-user__input"
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Ingresa tu contraseña"
+          />
+        </label>
+      )}
+      {error && <p className="login-form-user__error">{error}</p>}
+      <button className="login-form-user__button" type="submit">
         Enviar
       </button>
     </form>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useUserHook from "../../../hooks/userHook";
-import UserForm from "../user-form/userForm";
+import UserForm from "../user-form/UserForm";
 
 const AdminUsuarios = () => {
   const [vista, setVista] = useState("usuarios");

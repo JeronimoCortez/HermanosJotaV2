@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./components/screen/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminPage from "./components/screen/admin/AdminPage";
+import Register from "./components/screen/register/Register";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/productos/:id" element={<DetalleProducto />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<AdminPage />} />
 
         {/* Rutas protegidas */}

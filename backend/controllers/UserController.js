@@ -76,6 +76,27 @@ const actualizarUsuario = async (req, res, next) => {
   }
 };
 
+const cambiarContraseña = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { newPassword } = req.body;
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    const usuario = await User.findByIdAndUpdate(id, hashedPassword, {
+      new: true,
+      runvalidators: true,
+    });
+
+    return res.status(201).json(usuario);
+  } catch (err) {
+    const error = new Error(err.message);
+    error.status = 400;
+    next(error);
+  }
+};
+
 const eliminarUsuario = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -93,4 +114,5 @@ module.exports = {
   listarUsuarios,
   eliminarUsuario,
   actualizarUsuario,
+  cambiarContraseña,
 };

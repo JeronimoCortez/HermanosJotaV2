@@ -55,15 +55,11 @@ const listarUsuarios = async (req, res, next) => {
 const actualizarUsuario = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { username, email, password, rol } = req.body;
-
-    const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, salt);
+    const { username, email, rol } = req.body;
 
     const editedUser = {
       username,
       email,
-      password: hashPassword,
       rol,
     };
 

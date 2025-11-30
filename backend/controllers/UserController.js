@@ -84,7 +84,11 @@ const cambiarContraseña = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
 
-    const usuario = await User.findByIdAndUpdate(id, hashedPassword, {
+    const updatedPassword = {
+      password: hashedPassword,
+    };
+
+    const usuario = await User.findByIdAndUpdate(id, updatedPassword, {
       new: true,
       runvalidators: true,
     });

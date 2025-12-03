@@ -1,8 +1,8 @@
 import NavLinks from "./NavLinks";
 import { Link } from "react-router-dom";
-import { LogOut } from 'lucide-react';
+import { LogOut } from "lucide-react";
 
-const MobileMenu = ({ mostrarPagina, setVisible, visible, currentUser, handleLogout }) => {
+const MobileMenu = ({ setVisible, visible, currentUser, handleLogout }) => {
   return (
     <div className={!visible ? "mobile-menu" : "mobile-menu open"}>
       <div className="close-menu" onClick={() => setVisible(false)}>
@@ -22,17 +22,20 @@ const MobileMenu = ({ mostrarPagina, setVisible, visible, currentUser, handleLog
         {currentUser ? (
           <div className="mobile-user-info">
             <p className="mobile-username">{currentUser.username}</p>
-            <button className="mobile-logout-btn" onClick={() => {
-              handleLogout();
-              setVisible(false);
-            }}>
+            <button
+              className="mobile-logout-btn"
+              onClick={() => {
+                handleLogout();
+                setVisible(false);
+              }}
+            >
               <LogOut size={20} />
               <span>Cerrar sesión</span>
             </button>
           </div>
         ) : (
-          <Link 
-            to="/login" 
+          <Link
+            to="/login"
             className="mobile-login-link"
             onClick={() => setVisible(false)}
           >

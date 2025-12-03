@@ -9,6 +9,7 @@ import Contacto from "./components/screen/contacto/Contacto";
 import DetalleProducto from "./components/screen/detalle-producto/DetalleProducto";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Login from "./components/screen/login/Login";
 import AdminPage from "./components/screen/admin/AdminPage";
 import Register from "./components/screen/register/Register";
 import UserPage from "./components/screen/user/UserPage";

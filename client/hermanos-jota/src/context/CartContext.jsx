@@ -34,6 +34,10 @@ export const CartProvider = ({ children }) => {
     setOpenCarrito(false);
   }
 
+  function open() {
+    setOpenCarrito(true);
+  }
+
   function editarCantidad(id, cantidad) {
     setCarrito((prev) =>
       prev.map((p) => (p.id === id ? { ...p, cantidad } : p))
@@ -103,6 +107,7 @@ export const CartProvider = ({ children }) => {
     setCarrito,
     total,
     close,
+    open,
     editarCantidad,
     eliminarDelCarrito,
     verCarrito,

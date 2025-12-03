@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const VITE_API_LOGIN =
-    /* import.meta.env.VITE_API_LOGIN || */ "http://localhost:3000/api/login";
+    import.meta.env.VITE_API_LOGIN || "http://localhost:3000/api/login";
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");

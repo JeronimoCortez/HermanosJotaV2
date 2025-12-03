@@ -5,14 +5,14 @@ import NavLinks from "./NavLinks";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { LogOut } from "lucide-react";
-import { CartContext } from "../../../context/CartContext";
+import { useCart } from "../../../context/CartContext";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const { currentUser, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { open, total } = useContext(CartContext);
+  const { open, total } = useCart();
 
   const handleLogout = () => {
     logout();

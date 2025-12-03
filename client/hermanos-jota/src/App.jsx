@@ -4,10 +4,10 @@ import Navbar from "./components/ui/navbar/Navbar";
 import Footer from "./components/ui/footer/Footer";
 import Carrito from "./components/ui/carrito/Carrito";
 import HomePage from "./components/screen/home-page/home-page";
+import CarritoScreen from "./components/screen/carrito/CarritoScreen";
 import Contacto from "./components/screen/contacto/Contacto";
 import DetalleProducto from "./components/screen/detalle-producto/DetalleProducto";
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/screen/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminPage from "./components/screen/admin/AdminPage";
 import Register from "./components/screen/register/Register";
@@ -23,6 +23,7 @@ function App() {
         <Route path="/productos" element={<ProductPage />} />
         <Route path="/productos/:id" element={<DetalleProducto />} />
         <Route path="/contacto" element={<Contacto />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
@@ -39,7 +40,11 @@ function App() {
 
         <Route
           path="/carrito"
-          element={<ProtectedRoute>{/* <CarritoPage /> */}</ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <CarritoScreen />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Footer />

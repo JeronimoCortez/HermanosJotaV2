@@ -1,68 +1,123 @@
-import { useState, useEffect, createContext } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const CartContext = createContext();
+const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   const [openCarrito, setOpenCarrito] = useState(false);
+
   const [carrito, setCarrito] = useState(() => {
-    const carritoGuardado = localStorage.getItem("carrito");
-    return carritoGuardado ? JSON.parse(carritoGuardado) : [];
+    try {
+      const carritoGuardado = localStorage.getItem("carrito");
+      return carritoGuardado ? JSON.parse(carritoGuardado) : [];
+    } catch (e) {
+      console.error("Error leyendo carrito de localStorage:", e);
+      return [];
+    }
   });
 
-  function open() {
-    setOpenCarrito(true);
-  }
+  useEffect(() => {
+    try {
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    } catch (e) {
+      console.error("Error guardando carrito en localStorage:", e);
+    }
+  }, [carrito]);
+
+  const total = useMemo(() => {
+    return carrito.reduce((acc, producto) => acc + (producto.cantidad || 0), 0);
+  }, [carrito]);
 
   function close() {
     setOpenCarrito(false);
   }
 
-  useEffect(() => {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-  }, [carrito]);
-
-  function sumarAlCarrito(producto, cantidad) {
-    if (carrito.find((el) => el.producto._id === producto._id)) {
-      setCarrito(
-        carrito.map((el) =>
-          el.producto.id === producto.id
-            ? { ...el, cantidad: el.cantidad + cantidad }
-            : el
-        )
-      );
-    } else {
-      setCarrito([...carrito, { id: carrito.length + 1, producto, cantidad }]);
-    }
-  }
-
   function editarCantidad(id, cantidad) {
-    setCarrito(carrito.map((p) => (p.id === id ? { ...p, cantidad } : p)));
+    setCarrito((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, cantidad } : p))
+    );
   }
 
   function eliminarDelCarrito(producto) {
-    const nuevoCarrito = carrito.filter((el) => el.id !== producto);
-    setCarrito(nuevoCarrito);
+    setCarrito((prev) => prev.filter((el) => el.id !== producto));
   }
 
-  const total = carrito.reduce((total, producto) => {
-    return total + producto.cantidad;
-  }, 0);
+  function verCarrito() {
+    close();
+    navigate("/carrito");
+  }
 
-  return (
-    <CartContext.Provider
-      value={{
-        openCarrito,
-        open,
-        close,
-        carrito,
-        sumarAlCarrito,
-        editarCantidad,
-        eliminarDelCarrito,
-        total,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
+  function sumarAlCarrito(producto, cantidad) {
+    setCarrito((prev) => {
+      const found = prev.find(
+        (el) =>
+          (el.producto &&
+            producto &&
+            el.producto._id &&
+            producto._id &&
+            el.producto._id === producto._id) ||
+          (el.producto &&
+            producto &&
+            el.producto.id &&
+            producto.id &&
+            el.producto.id === producto.id)
+      );
+
+      if (found) {
+        return prev.map((el) => {
+          const same =
+            (el.producto &&
+              producto &&
+              el.producto._id &&
+              producto._id &&
+              el.producto._id === producto._id) ||
+            (el.producto &&
+              producto &&
+              el.producto.id &&
+              producto.id &&
+              el.producto.id === producto.id);
+
+          if (same) {
+            return { ...el, cantidad: (el.cantidad || 0) + cantidad };
+          }
+          return el;
+        });
+      } else {
+        const newId =
+          prev.length > 0 ? Math.max(...prev.map((i) => i.id || 0)) + 1 : 1;
+        return [...prev, { id: newId, producto, cantidad }];
+      }
+    });
+  }
+
+  function vaciarCarrito() {
+    setCarrito([]);
+  }
+
+  const value = {
+    openCarrito,
+    setOpenCarrito,
+    carrito,
+    setCarrito,
+    total,
+    close,
+    editarCantidad,
+    eliminarDelCarrito,
+    verCarrito,
+    sumarAlCarrito,
+    vaciarCarrito,
+  };
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const useCart = () => {
+  const ctx = useContext(CartContext);
+  if (!ctx) {
+    throw new Error("useCart debe usarse dentro de un CartProvider");
+  }
+  return ctx;
 };

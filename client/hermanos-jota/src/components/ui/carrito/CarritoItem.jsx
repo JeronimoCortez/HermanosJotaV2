@@ -1,3 +1,5 @@
+import { Trash } from "lucide-react";
+
 const CarritoItem = ({ item, editarCantidad, eliminarDelCarrito }) => {
   function modificarCantidad(cantidad) {
     if (cantidad >= 1) {
@@ -11,9 +13,9 @@ const CarritoItem = ({ item, editarCantidad, eliminarDelCarrito }) => {
       <div className="carrito-info">
         <strong>{item.producto?.nombre}</strong>
         <br />
-        <small>Unitario: $${item.producto?.precio}</small>
+        <small>Unitario: ${item.producto?.precio}</small>
         <br />
-        <strong>$${item.producto?.precio * item.cantidad}</strong>
+        <strong>${item.producto?.precio * item.cantidad}</strong>
         <div className="cantidad-control">
           <button onClick={() => modificarCantidad(item.cantidad - 1)}>
             -
@@ -28,7 +30,7 @@ const CarritoItem = ({ item, editarCantidad, eliminarDelCarrito }) => {
         className="btn-eliminar"
         onClick={() => eliminarDelCarrito(item.id)}
       >
-        Eliminar
+        <Trash/>
       </button>
     </div>
   );

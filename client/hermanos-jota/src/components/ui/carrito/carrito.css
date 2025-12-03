@@ -153,3 +153,22 @@
 .btn-pago:hover {
   background-color: #76391c;
 }
+
+.btn-vaciar{
+  all:unset;
+  border: 1px solid #ef2323;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  gap: 2px;
+  margin: 0 auto;
+  color: #ef2323;
+  cursor: pointer;
+}
+
+.btn-eliminar{
+  all: unset;
+  cursor: pointer;
+  color: #ef2323;
+}

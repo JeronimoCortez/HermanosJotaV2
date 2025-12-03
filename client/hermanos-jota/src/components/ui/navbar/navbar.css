@@ -103,6 +103,8 @@ header > div {
   font-weight: 600;
   margin: 0;
   text-transform: capitalize;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .mobile-logout-btn {

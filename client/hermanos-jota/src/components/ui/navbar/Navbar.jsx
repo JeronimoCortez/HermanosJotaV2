@@ -67,7 +67,7 @@ const Navbar = () => {
           >
             <h2>
               <span
-                class="material-symbols-outlined"
+                className="material-symbols-outlined"
                 onClick={() => navigate("/perfil")}
               >
                 account_circle

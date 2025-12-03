@@ -1,5 +1,5 @@
 const BASE_URL =
-  import.meta.env.VITE_API_LOGIN || "http://localhost:3000/api/register";
+  import.meta.env.VITE_API_USER || "http://localhost:3000/api/register";
 
 export const getUsuarios = async () => {
   const response = await fetch(`${BASE_URL}`);

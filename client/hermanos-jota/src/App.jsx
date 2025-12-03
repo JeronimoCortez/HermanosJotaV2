@@ -9,6 +9,7 @@ import Contacto from "./components/screen/contacto/Contacto";
 import DetalleProducto from "./components/screen/detalle-producto/DetalleProducto";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AdminProtectedRoute from "./components/ProtectedRoute/AdminProtectedRoute";
 import Login from "./components/screen/login/Login";
 import AdminPage from "./components/screen/admin/AdminPage";
 import Register from "./components/screen/register/Register";
@@ -36,7 +37,7 @@ function App() {
 
         <Route
           path="/admin"
-          element={<ProtectedRoute>{<AdminPage />}</ProtectedRoute>}
+          element={<AdminProtectedRoute>{<AdminPage />}</AdminProtectedRoute>}
         />
 
         <Route

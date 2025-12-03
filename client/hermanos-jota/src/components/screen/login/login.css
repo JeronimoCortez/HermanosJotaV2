@@ -131,6 +131,7 @@
 
 .login-form__p {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /* Responsive */

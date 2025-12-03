@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./ProtectedRoute.css";
 
-const ProtectedRoute = ({ children }) => {
+const AdminProtectedRoute = ({ children }) => {
   const { currentUser, loading } = useContext(AuthContext);
 
   if (loading) {
@@ -14,11 +14,11 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  if (!currentUser) {
-    return <Navigate to="/login" replace />;
+  if (currentUser.rol !== "admin") {
+    return <Navigate to="/" replace />;
   }
 
   return children;
 };
 
-export default ProtectedRoute;
+export default AdminProtectedRoute;

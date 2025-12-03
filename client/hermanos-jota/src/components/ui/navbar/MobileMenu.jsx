@@ -21,7 +21,9 @@ const MobileMenu = ({ setVisible, visible, currentUser, handleLogout }) => {
       <div className="mobile-menu-auth">
         {currentUser ? (
           <div className="mobile-user-info">
-            <p className="mobile-username">{currentUser.username}</p>
+            <Link to="/perfil" className="mobile-username">
+              {currentUser.username}
+            </Link>
             <button
               className="mobile-logout-btn"
               onClick={() => {

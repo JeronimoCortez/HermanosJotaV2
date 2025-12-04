@@ -51,8 +51,9 @@ export const ProductosProvider = ({ children }) => {
     if (window.confirm("Estas seguro de actualizar el producto")) {
       try {
         await editarProducto(id, producto);
-        const data = getProductos();
-        setProductos(data);
+        setProductos((prev) =>
+          prev.map((p) => (p._id === id ? { ...p, ...producto } : p))
+        );
       } catch (err) {
         console.log("error al actualiar producto", err);
       }

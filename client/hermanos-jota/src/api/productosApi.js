@@ -49,11 +49,11 @@ export const deleteProduct = async (id) => {
   return response.data;
 };
 
-export const editarProducto = async (id, productoAcutalizado) => {
+export const editarProducto = async (id, productoActualizado) => {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(productoAcutalizado),
+    body: JSON.stringify(productoActualizado),
   });
 
   if (!response.ok) {

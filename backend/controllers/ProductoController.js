@@ -62,7 +62,7 @@ const crearProducto = async (req, res, next) => {
     });
 
     const data = await nuevoProducto.save();
-    return res.status(204).json(data);
+    return res.status(201).json(data);
   } catch (err) {
     const error = new Error(err.message);
     error.status = 401;
@@ -77,7 +77,7 @@ const actualizarProducto = async (req, res, next) => {
 
     const producto = await Producto.findByIdAndUpdate(id, datosActualizados, {
       new: true,
-      runvalidators: true,
+      runValidators: true,
     });
 
     return res.status(201).json(producto);

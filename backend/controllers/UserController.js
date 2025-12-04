@@ -65,7 +65,7 @@ const actualizarUsuario = async (req, res, next) => {
 
     const usuario = await User.findByIdAndUpdate(id, editedUser, {
       new: true,
-      runvalidators: true,
+      runValidators: true,
     });
 
     return res.status(201).json(usuario);
@@ -90,7 +90,7 @@ const cambiarContraseña = async (req, res, next) => {
 
     const usuario = await User.findByIdAndUpdate(id, updatedPassword, {
       new: true,
-      runvalidators: true,
+      runValidators: true,
     });
 
     return res.status(201).json(usuario);

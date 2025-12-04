@@ -11,7 +11,7 @@ const useUserHook = () => {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
-    const fetchUsuarios = async () => {
+    const fetchProductos = async () => {
       try {
         const data = await getUsuarios();
         setUsuarios(data);
@@ -20,7 +20,7 @@ const useUserHook = () => {
         console.error("Error al cargar usuarios", error);
       }
     };
-    fetchUsuarios();
+    fetchProductos();
   }, []);
 
   const crearUsuario = async (usuario) => {
@@ -44,12 +44,11 @@ const useUserHook = () => {
   };
 
   const actualizarUsuario = async (id, usuario) => {
-    if (window.confirm("Estas seguro de actualizar el usuario")) {
+    if (window.confirm("Estas seguro de actualizar el producto")) {
       try {
         await editarUsuario(id, usuario);
-        setUsuarios((prev) =>
-          prev.map((u) => (u._id === id ? { ...u, ...usuario } : u))
-        );
+        const data = await getUsuarios();
+        setUsuarios(data);
       } catch (err) {
         console.log("error al actualizar producto", err);
       }

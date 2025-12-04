@@ -63,7 +63,12 @@ const Navbar = () => {
         {currentUser ? (
           <div
             className="user-info-desktop"
-            style={{ display: "flex", alignContent: "center", gap: "10px" }}
+            style={{
+              display: "flex",
+              alignContent: "center",
+              gap: "10px",
+              cursor: "pointer",
+            }}
           >
             <h2>
               <span

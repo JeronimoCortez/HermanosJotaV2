@@ -14,6 +14,7 @@ import Login from "./components/screen/login/Login";
 import AdminPage from "./components/screen/admin/AdminPage";
 import Register from "./components/screen/register/Register";
 import UserPage from "./components/screen/user/UserPage";
+import Error404 from "./components/screen/error404/Error404";
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </div>

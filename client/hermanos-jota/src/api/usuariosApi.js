@@ -36,11 +36,11 @@ export const deleteUsuario = async (id) => {
   return response.data;
 };
 
-export const editarUsuario = async (id, usuarioActualizado) => {
+export const editarUsuario = async (id, usuarioAcutalizado) => {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(usuarioActualizado),
+    body: JSON.stringify(usuarioAcutalizado),
   });
 
   if (!response.ok) {

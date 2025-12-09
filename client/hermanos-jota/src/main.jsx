@@ -5,7 +5,6 @@ import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import { ProductosProvider } from "./context/ProductosContext.jsx";
-3;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
